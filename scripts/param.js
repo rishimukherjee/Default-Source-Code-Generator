@@ -1,6 +1,6 @@
 function validate_and_process(){
       var result = document.input_form.iargs.value;
-      var ans = "<table id='arg_inp'><tr><th>Name of Variable</th><th>Type of Variable</th><th>Dimension of Variable</th></tr>";
+      var ans = "<form name='arg_form'><table id='arg_inp'><tr><th>Name of Variable</th><th>Type of Variable</th><th>Dimension of Variable</th></tr>";
       if (result==0 || result==null || result=="") {
 	  document.getElementById("args").innerHTML="";
           alert("Number of input Arguments is set to 0");
@@ -12,7 +12,7 @@ function validate_and_process(){
          ans += "<td><input type='text' size='20'  name='vardim"+i+"'></td>";
          ans += "</tr>"
       }
-      document.getElementById("args").innerHTML=ans+"</table>";
+      document.getElementById("args").innerHTML=ans+"</table></form>";
 }
 
 function inpgen(){
