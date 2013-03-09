@@ -1,20 +1,30 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>INPUT</title>
+    <title>INPUT FORM</title>
   <script src="scripts/param.js"></script>
+  <script src="scripts/suggen.js"></script>
   </head>
   <body>
     <form name="input_form">
-      <p id="func_name">Name of Function: <input type="text" name="fname"></p><br>
-      <p id="class_name">Name of Class: <input type="text" name="cname"></p><br>
-      <p id="input_args">Number of Input Arguments: <input type="text" name="iargs"></p><br>
+      <table id="func_inp">
+      <tr><th>Name of Function</th>
+      <th>Name of Class (Java)</th>
+      <th># Input Arguments</th>
+      <th>Function return type</th></tr>
+      <tr><td><input type="text" name="fname"></td>
+      <td><input type="text" name="cname"></td>
+      <td><input type="text" id="iargs1" name="iargs"></td>
+      <td><input type="text" name="argret"></td>
+      </table>
     </form>
-    <form name="" action="javascript:inpgen()">
-    <input name="arg_take" type="submit" value="Let me input arguments">
+    <form name="arggen" action="javascript:inpgen()">
+    <input name="arg_take" type="submit" value="Input arguments">
     </form>
     <p id="args"></p>
+    <form name="suggen" action="javascript:sug()">
+    <input name="genbutton" type="submit" value="Generate Suggestions">
+    </form>
   </body>
 </html>
-      
     
