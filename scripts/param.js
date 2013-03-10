@@ -1,20 +1,15 @@
 function validate_and_process(){
-      var result = document.input_form.iargs.value;
-      var ans = "<form name='arg_form'><table id='arg_inp'><tr><th>Name of Variable</th><th>Type of Variable</th><th>Dimension of Variable</th></tr>";
-      if (result==0 || result==null || result=="") {
-	  document.getElementById("args").innerHTML="";
-          alert("Number of input Arguments is set to 0");
-	  return false;
-      }
+      var result = document.input_form.input_args.value;
+      var argument_form = "<table id='arg_inp'><tr><th>Name of Variable</th><th>Type of Variable</th><th>Dimension of Variable</th></tr>";
       for(var i=0; i<result;i++){
-         ans += "<tr><td><input type='text' size='20' name='varname"+i+"'></td>";
-         ans += "<td><input type='text' size='20' name='vartype"+i+"'></td>";
-         ans += "<td><input type='text' size='20'  name='vardim"+i+"'></td>";
-         ans += "</tr>"
+         argument_form += "<tr><td><input type='text' size='20' name='arg_name_"+i+"'></td>";
+         argument_form += "<td><input type='text' size='20' name='arg_type_"+i+"'></td>";
+         argument_form += "<td><input type='text' size='20'  name='arg_dim_"+i+"'></td>";
+         argument_form += "</tr>"
       }
-      document.getElementById("args").innerHTML=ans+"</table></form>";
+      if(result!=0)
+      document.getElementById("args").innerHTML=argument_form+"</table><input type='submit' value='submit'>";
+      else
+      document.getElementById("args").innerHTML="<input type='submit' value='submit'>";
 }
 
-function inpgen(){
-    validate_and_process();
-}

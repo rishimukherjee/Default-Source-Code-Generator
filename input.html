@@ -6,24 +6,16 @@
   <script src="scripts/suggen.js"></script>
   </head>
   <body>
-    <form name="input_form">
-      <table id="func_inp">
+    <form name="input_form" method="POST" action="suggestion.php" onsubmit="return validate()">
+      <table id="func_input">
       <tr><th>Name of Function</th>
       <th>Name of Class (Java)</th>
-      <th># Input Arguments</th>
-      <th>Function return type</th></tr>
-      <tr><td><input type="text" name="fname"></td>
-      <td><input type="text" name="cname"></td>
-      <td><input type="text" id="iargs1" name="iargs"></td>
-      <td><input type="text" name="argret"></td>
+      <th># Input Arguments</th></tr>
+      <tr><td><input type="text" name="f_name"></td>
+      <td><input type="text" name="c_name"></td>
+      <td><input type="text" id="iargs1" name="input_args" onKeyUp="return validate_and_process()"></td>
       </table>
-    </form>
-    <form name="arggen" action="javascript:inpgen()">
-    <input name="arg_take" type="submit" value="Input arguments">
-    </form>
-    <p id="args"></p>
-    <form name="suggen" action="javascript:sug()">
-    <input name="genbutton" type="submit" value="Generate Suggestions">
+      <p id="args"></p>
     </form>
   </body>
 </html>
