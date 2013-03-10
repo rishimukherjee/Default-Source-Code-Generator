@@ -121,7 +121,7 @@ all_lang_suggestor($inp);
 ?>
 
 <form action=''>
-<select name='func_ret_types'>
+<select name='c_func_ret_types'>
 <?php 
 foreach ($c_all_return_type_with_name as $i):?>
   <option value='<?= $i?>'><?= $i?></option>
@@ -135,6 +135,24 @@ foreach ($c_all_arg_sug as $i):?>
 	<? $count++;
 	foreach ($i as $j):?>
 		<option value='<?= $j?>'><?= $j?></option>
+	<?php endforeach;?>
+	</select>
+<?php endforeach;?>
+
+<select name='java_func_ret_types'>
+<?php 
+foreach ($java_all_return_type_with_name as $i):?>
+  <option value='<?= htmlentities($i)?>'><?= htmlentities($i)?></option>
+<?php endforeach;?>
+
+</select>
+<?php 
+$count = 0;
+foreach ($java_all_arg_sug as $i):?>
+	<select name='<?= "arg" . $count ?>'>
+	<? $count++;
+	foreach ($i as $j):?>
+		<option value='<?= htmlentities($j)?>'><?= htmlentities($j)?></option>
 	<?php endforeach;?>
 	</select>
 <?php endforeach;?>
