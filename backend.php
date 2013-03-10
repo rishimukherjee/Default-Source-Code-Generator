@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<head>
+<title>Suggested Form</title>
+</head>
 <body>
 <?php
 $inp = $_GET;
@@ -9,7 +12,7 @@ for($i=0; $i<$inp['nargs']-1; $i++){
 }
 $c_code .= ' '.$inp['c_arg_'.($inp['nargs']-1)];
 $c_code .= ') {&#10;';
-$c_code .= '&#09;\\\Your code goes here..&#10;';
+$c_code .= '&#09;//Your code goes here..&#10;';
 $c_code .= '}';
 echo "<h2>C template</h2><br>";
 echo "<textarea name='c_code' rows=3 cols=100 readonly='true'>". $c_code ."</textarea>";
@@ -22,7 +25,7 @@ for($i=0; $i<$inp['nargs']-1; $i++){
 }
 $java_code .= ' '.$inp['java_arg_'.($inp['nargs']-1)];
 $java_code .= ') {&#10;';
-$java_code .= '&#09; \\\Your code goes here..&#10;';
+$java_code .= '&#09; //Your code goes here..&#10;';
 $java_code .= '&#09;}&#10;';
 $java_code .= '}';
 echo "<textarea name='java_code' rows=5 cols=130 readonly='true'>". $java_code ."</textarea>";

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<head>
+<title>Suggest</title>
+</head>
 <body>
 <?php
 $inp = $_POST;
