@@ -98,13 +98,13 @@ function java_suggestor($inp){
 	}
 	foreach ($java_class_list as $one_type){
 		foreach ($java_types as $this_type){
-			array_push($java_all_return_type_with_name, htmlentities($one_type.'<'.$java_type_map[$this_type].'> '.$inp['f_name']));
+			array_push($java_all_return_type_with_name, $one_type.'<'.$java_type_map[$this_type].'> '.$inp['f_name']);
 		}
 	}
 	foreach ($java_class_list as $one_type){
 		foreach ($java_class_list as $one_type_2){
 			foreach ($java_types as $this_type){
-			array_push($java_all_return_type_with_name, htmlentities($one_type.'<'.$one_type_2.'<'.$java_type_map[$this_type].'> > '.$inp['f_name']));
+			array_push($java_all_return_type_with_name, $one_type.'<'.$one_type_2.'<'.$java_type_map[$this_type].'> > '.$inp['f_name']);
 			}
 		}
 	}
