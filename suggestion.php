@@ -76,7 +76,7 @@ function java_one_arg_sug_generator($arg_name, $arg_type, $arg_dim){
 	elseif($arg_dim==2){
 		array_push($this_sug_store, $arg_type.' '.$arg_name.'[][]');
 		foreach($java_class_list as $i){
-			array_push($this_sug_store, $i."<".$i."<".$java_type_map[$arg_type]."> > ".$arg_name);
+			array_push($this_sug_store, $i."<".$i."<".$java_type_map[$arg_type].">> ".$arg_name);
 		}
 	}
 	return $this_sug_store;
@@ -104,7 +104,7 @@ function java_suggestor($inp){
 	foreach ($java_class_list as $one_type){
 		foreach ($java_class_list as $one_type_2){
 			foreach ($java_types as $this_type){
-			array_push($java_all_return_type_with_name, $one_type.'<'.$one_type_2.'<'.$java_type_map[$this_type].'> > '.$inp['f_name']);
+			array_push($java_all_return_type_with_name, $one_type.'<'.$one_type_2.'<'.$java_type_map[$this_type].'>> '.$inp['f_name']);
 			}
 		}
 	}
@@ -120,7 +120,12 @@ all_lang_suggestor($inp);
 
 ?>
 
-<form action=''>
+<form action="backend.php">
+<?php 
+	echo "<input type='hidden' name='cname' value='".$inp['c_name']."'>";
+	echo "<input type='hidden' name='nargs' value='".$inp['input_args']."'>";
+?>
+
 <select name='c_func_ret_types'>
 <?php 
 foreach ($c_all_return_type_with_name as $i):?>
@@ -131,7 +136,7 @@ foreach ($c_all_return_type_with_name as $i):?>
 <?php 
 $count = 0;
 foreach ($c_all_arg_sug as $i):?>
-	<select name='<?= "arg" . $count ?>'>
+	<select name='<?= "c_arg_" . $count ?>'>
 	<? $count++;
 	foreach ($i as $j):?>
 		<option value='<?= $j?>'><?= $j?></option>
@@ -149,13 +154,17 @@ foreach ($java_all_return_type_with_name as $i):?>
 <?php 
 $count = 0;
 foreach ($java_all_arg_sug as $i):?>
-	<select name='<?= "arg" . $count ?>'>
+	<select name='<?= "java_arg_" . $count ?>'>
 	<? $count++;
 	foreach ($i as $j):?>
 		<option value='<?= htmlentities($j)?>'><?= htmlentities($j)?></option>
 	<?php endforeach;?>
 	</select>
 <?php endforeach;?>
-</form>	
+<br/>
+<br/>
+<input type='submit' value='Submit'>
+</form>
+	
 </body>
 </html>
