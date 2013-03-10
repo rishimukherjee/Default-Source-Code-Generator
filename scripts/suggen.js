@@ -27,18 +27,4 @@ function validate(){
     }
 }
 
-function suggest(){
-    var func_name = document.forms["input_form"]["f_name"].value;
-    var class_name = document.forms["input_form"]["c_name"].value;
-    var inp_arg_cnt = document.forms["input_form"]["input_args"].value;
-    var all_args = new Array();
-    for(var i=0; i<inp_arg_cnt; i++){
-        var one_arg = {
-	    arg_name : document.forms["arg_form"]["arg_name_"+i].value,
-            arg_type : document.forms["arg_form"]["arg_type_"+i].value,
-            arg_dim : document.forms["arg_form"]["arg_dim_"+i].value,
-	}
-        all_args.push(one_arg);
-    }
-}
 
