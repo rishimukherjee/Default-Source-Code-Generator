@@ -125,7 +125,8 @@ all_lang_suggestor($inp);
 	echo "<input type='hidden' name='cname' value='".$inp['c_name']."'>";
 	echo "<input type='hidden' name='nargs' value='".$inp['input_args']."'>";
 ?>
-
+<h2>C <i>Suggestions</i></h2>
+<div id='c_div'>
 <select name='c_func_ret_types'>
 <?php 
 foreach ($c_all_return_type_with_name as $i):?>
@@ -143,7 +144,10 @@ foreach ($c_all_arg_sug as $i):?>
 	<?php endforeach;?>
 	</select>
 <?php endforeach;?>
-
+</div>
+<br/>
+<h2>Java <i>Suggestions</i></h2>
+<div id='java_div'>
 <select name='java_func_ret_types'>
 <?php 
 foreach ($java_all_return_type_with_name as $i):?>
@@ -161,6 +165,7 @@ foreach ($java_all_arg_sug as $i):?>
 	<?php endforeach;?>
 	</select>
 <?php endforeach;?>
+</div>
 <br/>
 <br/>
 <input type='submit' value='Submit'>
