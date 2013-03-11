@@ -15,17 +15,18 @@ $c_dim_mapper[1] = array('*', '[]');
 $c_dim_mapper[2] = array('**', '[][]');
 
 /*All function return types of c*/
-$c_return_types = array('int', 'int*', 'void');
+$c_return_types = array('int', 'int*', 'void', 'char', 'char*');
 
 /*Java type Class mapper*/
 $java_type_map = array();
 $java_type_map['int'] = 'Integer';
+$java_type_map['char'] = 'Character';
 
 /*Java Containers*/
 $java_class_list = array('ArrayList', 'Vector', 'Set', 'List');
 
 $java_dim_array_type = array('', '[]', '[][]');
-$java_types = array('int');
+$java_types = array('int', 'char');
 
 /*This array stores all arguments suggestion as an arrays inside this array.
 So, the 0th index will contain an array with suggestion for 0th argument for C*/
