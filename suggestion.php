@@ -8,28 +8,44 @@
 <?php
 $inp = $_POST;
 
+/*Maps dimension to possible C syntax.*/
 $c_dim_mapper = array();
 $c_dim_mapper[0] = array('');
 $c_dim_mapper[1] = array('*', '[]');
 $c_dim_mapper[2] = array('**', '[][]');
+
+/*All function return types of c*/
 $c_return_types = array('int', 'int*', 'void');
 
+/*Java type Class mapper*/
 $java_type_map = array();
 $java_type_map['int'] = 'Integer';
 
+/*Java Containers*/
 $java_class_list = array('ArrayList', 'Vector', 'Set', 'List');
 
 $java_dim_array_type = array('', '[]', '[][]');
 $java_types = array('int');
 
 /*This array stores all arguments suggestion as an arrays inside this array.
-So, the 0th index will contain an array with suggestion for 0th argument*/
-
+So, the 0th index will contain an array with suggestion for 0th argument for C*/
 $c_all_arg_sug = array();
+
+/*This array stores all return type possibilities returned by c_suggestor()*/
 $c_all_return_type_with_name = array();
+
+/*This array stores all return type possibilities returned by java_suggestor()*/
 $java_all_return_type_with_name = array();
+
+/*This array stores all arguments suggestion as an arrays inside this array.
+So, the 0th index will contain an array with suggestion for 0th argument for Java*/
 $java_all_arg_sug = array();
 
+
+/*This function is used by c_suggestor to return all the possible suggestions of an argument.
+Input - Argument Name, Argument Type, Argument_Dimension
+Output - Array containing all possible suggestions of than argument.
+*/
 function c_one_arg_sug_generator($arg_name, $arg_type, $arg_dim){
    global $c_dim_mapper;
    $this_sug_store = array();
@@ -51,6 +67,7 @@ function c_one_arg_sug_generator($arg_name, $arg_type, $arg_dim){
    return $this_sug_store;
 }
 
+/*This function ceates every suggestion for arguments as well as return types for C.*/
 function c_suggestor($inp){
    global $c_all_arg_sug, $c_return_types, $c_all_return_type_with_name;
    $arg_size = $inp['input_args'];
@@ -65,6 +82,11 @@ function c_suggestor($inp){
    }
 }
 
+
+/*This function is used by java_suggestor to return all the possible suggestions of an argument.
+Input - Argument Name, Argument Type, Argument_Dimension
+Output - Array containing all possible suggestions of than argument.
+*/
 function java_one_arg_sug_generator($arg_name, $arg_type, $arg_dim){
 	global $java_type_map, $java_class_list;
 	$this_sug_store = array();
@@ -86,6 +108,7 @@ function java_one_arg_sug_generator($arg_name, $arg_type, $arg_dim){
 	return $this_sug_store;
 }
 
+/*This function ceates every suggestion for arguments as well as return types for C.*/
 function java_suggestor($inp){
 	global $java_all_arg_sug, $java_dim_array_type, $java_types, $java_all_return_type_with_name, $java_class_list, $java_type_map;
 	$arg_size = $inp['input_args'];
@@ -114,6 +137,8 @@ function java_suggestor($inp){
 	}
 }
 
+/*This function is the main function. Just plug-in any <lang>_suggestor($inp) in this function
+and it will start working*/
 
 function all_lang_suggestor($inp){
 	c_suggestor($inp);
@@ -134,19 +159,19 @@ all_lang_suggestor($inp);
 <select name='c_func_ret_types'>
 <option selected="selected" disabled='disabled'>Select Return Type</option> 
 <?php 
-foreach ($c_all_return_type_with_name as $i):?>
-  <option value='<?= $i?>'><?= $i?></option>
+foreach ($c_all_return_type_with_name as $c_one_return_type_with_name):?>
+  <option value='<?= $c_one_return_type_with_name?>'><?= $c_one_return_type_with_name?></option>
 <?php endforeach;?>
 
 </select>
 <?php 
 $count = 0;
-foreach ($c_all_arg_sug as $i):?>
+foreach ($c_all_arg_sug as $c_one_arg_sug):?>
 	<select name='<?= "c_arg_" . $count ?>'>
 	<option disabled='disabled' selected="selected">Select Argument <?= $count+1 ?></option>
 	<? $count++;
-	foreach ($i as $j):?>
-		<option value='<?= $j?>'><?= $j?></option>
+	foreach ($c_one_arg_sug as $this_sug):?>
+		<option value='<?= $this_sug?>'><?= $this_sug?></option>
 	<?php endforeach;?>
 	</select>
 <?php endforeach;?>
@@ -157,19 +182,19 @@ foreach ($c_all_arg_sug as $i):?>
 <select name='java_func_ret_types'>
 <option selected="selected" disabled='disabled'>Select Return Type</option>
 <?php 
-foreach ($java_all_return_type_with_name as $i):?>
-  <option value='<?= htmlentities($i)?>'><?= htmlentities($i)?></option>
+foreach ($java_all_return_type_with_name as $java_one_return_type_with_name):?>
+  <option value='<?= htmlentities($java_one_return_type_with_name)?>'><?= htmlentities($java_one_return_type_with_name)?></option>
 <?php endforeach;?>
 
 </select>
 <?php 
 $count = 0;
-foreach ($java_all_arg_sug as $i):?>
+foreach ($java_all_arg_sug as $java_one_arg_sug):?>
 	<select name='<?= "java_arg_" . $count ?>'>
 	<option disabled='disabled' selected="selected">Select Argument <?= $count+1 ?></option>
 	<? $count++;
-	foreach ($i as $j):?>
-		<option value='<?= htmlentities($j)?>'><?= htmlentities($j)?></option>
+	foreach ($java_one_arg_sug as $this_sug):?>
+		<option value='<?= htmlentities($this_sug)?>'><?= htmlentities($this_sug)?></option>
 	<?php endforeach;?>
 	</select>
 <?php endforeach;?>
