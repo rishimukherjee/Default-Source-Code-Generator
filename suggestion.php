@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Suggest</title>
+<script src="scripts/suggen.js"></script>
 </head>
 <body>
 <?php
@@ -123,7 +124,7 @@ all_lang_suggestor($inp);
 
 ?>
 
-<form action="backend.php">
+<form name="suggestion" action="backend.php" onsubmit="return suggestion_validate()">
 <?php 
 	echo "<input type='hidden' name='cname' value='".$inp['c_name']."'>";
 	echo "<input type='hidden' name='nargs' value='".$inp['input_args']."'>";
@@ -131,6 +132,7 @@ all_lang_suggestor($inp);
 <h2>C <i>Suggestions</i></h2>
 <div id='c_div'>
 <select name='c_func_ret_types'>
+<option selected="selected" disabled='disabled'>Select Return Type</option> 
 <?php 
 foreach ($c_all_return_type_with_name as $i):?>
   <option value='<?= $i?>'><?= $i?></option>
@@ -141,6 +143,7 @@ foreach ($c_all_return_type_with_name as $i):?>
 $count = 0;
 foreach ($c_all_arg_sug as $i):?>
 	<select name='<?= "c_arg_" . $count ?>'>
+	<option disabled='disabled' selected="selected">Select Argument <?= $count+1 ?></option>
 	<? $count++;
 	foreach ($i as $j):?>
 		<option value='<?= $j?>'><?= $j?></option>
@@ -152,6 +155,7 @@ foreach ($c_all_arg_sug as $i):?>
 <h2>Java <i>Suggestions</i></h2>
 <div id='java_div'>
 <select name='java_func_ret_types'>
+<option selected="selected" disabled='disabled'>Select Return Type</option>
 <?php 
 foreach ($java_all_return_type_with_name as $i):?>
   <option value='<?= htmlentities($i)?>'><?= htmlentities($i)?></option>
@@ -162,6 +166,7 @@ foreach ($java_all_return_type_with_name as $i):?>
 $count = 0;
 foreach ($java_all_arg_sug as $i):?>
 	<select name='<?= "java_arg_" . $count ?>'>
+	<option disabled='disabled' selected="selected">Select Argument <?= $count+1 ?></option>
 	<? $count++;
 	foreach ($i as $j):?>
 		<option value='<?= htmlentities($j)?>'><?= htmlentities($j)?></option>
