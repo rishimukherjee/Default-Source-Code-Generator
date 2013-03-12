@@ -11,12 +11,17 @@
       <table id="func_input">
       <tr><th>Name of Function</th>
       <th>Name of Class (Java)</th>
-      <th># Input Arguments</th></tr>
+      <th>C Total Arguments</th>
+      <th>Java Total Arguments</th></tr>
       <tr><td><input type="text" name="f_name"></td>
       <td><input type="text" name="c_name"></td>
-      <td><input type="number" id="iargs1" name="input_args" onKeyUp="return validate_and_process()"></td>
+      <td><input type="number" id="iargs1" name="c_input_args" onKeyUp="return c_validate_and_process()"></td>
+      <td><input type="number" id="iargs2" name="java_input_args" onKeyUp="return java_validate_and_process()"></td>
+      </tr>
       </table>
-      <p id="args"></p>
+      <p id="c_args"></p>
+      <br/>
+      <p id="java_args"></p>
     </form>
   </body>
 </html>

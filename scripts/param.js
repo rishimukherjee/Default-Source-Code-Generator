@@ -1,16 +1,37 @@
-function validate_and_process(){
-      var result = document.input_form.input_args.value;
-      if(Math.round(result)!=result) return false;
-      var argument_form = "<table id='arg_inp'><tr><th>Name of Variable</th><th>Type of Variable</th><th>Dimension of Variable</th></tr>";
+function c_validate_and_process(){
+      var result = document.input_form.c_input_args.value;
+      if(result!=0 && Math.round(result)!=result) return false;
+      var argument_form = "<h3>C Function Arguments</h3><table id='c_arg_inp'><tr><th>Name of Variable</th><th>Type of Variable</th><th>Dimension of Variable</th></tr>";
       for(var i=0; i<result;i++){
-         argument_form += "<tr><td><input type='text' size='20' name='arg_name_"+i+"'></td>";
-         argument_form += "<td align='center'><select name='arg_type_"+i+"'><option value='int'>int</option><option value='char'>char</option></select></td>";
-         argument_form += "<td align='center'><select name='arg_dim_"+i+"'><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option></select></td>";
-         argument_form += "</tr>"
+         argument_form += "<tr><td><input type='text' size='20' name='c_arg_name_"+i+"'></td>";
+         argument_form += "<td align='center'><select name='c_arg_type_"+i+"'><option value='int'>int</option></select></td>";
+         argument_form += "<td align='center'><select name='c_arg_dim_"+i+"'><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option></select></td>";
+         argument_form += "</tr>";
       }
-      if(result!=0)
-      document.getElementById("args").innerHTML=argument_form+"</table><input type='submit' value='submit'>";
-      else
-      document.getElementById("args").innerHTML="<input type='submit' value='submit'>";
+      temp_argument_form = "<table id='c_arg_inp'>";
+      temp_argument_form += "<tr><th>Function return type</th><th>Function return Dimension</th></tr>";
+      temp_argument_form += "<tr><td align='center'><select name='c_arg_ret_type'><option value='int'>int</option><option value='void'>void</option></select></td>";
+      temp_argument_form += "<td align='center'><select name='c_arg_ret_dim'><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option></select></td></tr>";
+      if(result!=0) document.getElementById("c_args").innerHTML=argument_form+temp_argument_form+"</table>";
+      else document.getElementById("c_args").innerHTML=temp_argument_form+"</table>";
 }
 
+function java_validate_and_process(){
+	var result = document.input_form.java_input_args.value;
+	if(result!=0 && Math.round(result)!=result) return false;
+	var argument_form = "<h3>Java Function Arguments</h3><table id='java_arg_inp'><tr><th>Name of Variable</th><th>Type of Variable</th><th>Dimension of Variable</th></tr>";
+	for(var i=0; i<result;i++){
+        argument_form += "<tr><td><input type='text' size='20' name='java_arg_name_"+i+"'></td>";
+        argument_form += "<td align='center'><select name='java_arg_type_"+i+"'><option value='int'>int</option></select></td>";
+        argument_form += "<td align='center'><select name='java_arg_dim_"+i+"'><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option></select></td>";
+        argument_form += "</tr>";
+     }
+	temp_argument_form = "<table id='c_arg_inp'>";
+	temp_argument_form += "<tr><th>Function return type</th><th>Function return Dimension</th></tr>";
+    temp_argument_form += "<tr><td align='center'><select name='java_arg_ret_type'><option value='int'>int</option><option value='void'>void</option></select></td>";
+    temp_argument_form += "<td align='center'><select name='java_arg_ret_dim'><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option></select></td></tr>";
+	if(result!=0)
+	    document.getElementById("java_args").innerHTML=argument_form+temp_argument_form+"</table><input type='submit' value='submit'>";
+	else
+	    document.getElementById("java_args").innerHTML=temp_argument_form+"</table>"+"<input type='submit' value='submit'>";
+}
