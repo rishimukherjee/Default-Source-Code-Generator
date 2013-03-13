@@ -148,7 +148,7 @@ all_lang_suggestor($inp);
 
 ?>
 
-<form name="suggestion" action="backend.php" onsubmit="return suggestion_validate()">
+<form name="suggestion" method="POST" action="backend.php" onsubmit="return suggestion_validate()">
 <?php 
 	echo "<input type='hidden' name='cname' value='".$inp['c_name']."'>";
 	echo "<input type='hidden' name='c_nargs' value='".$inp['c_input_args']."'>";

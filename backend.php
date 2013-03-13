@@ -5,7 +5,7 @@
 </head>
 <body>
 <?php
-$inp = $_GET;
+$inp = $_POST;
 $c_code = $inp['c_func_ret_types'].'(';
 for($i=0; $i<$inp['c_nargs']-1; $i++){
 	$c_code .= ' '.$inp['c_arg_'.$i].',';
