@@ -2,11 +2,20 @@
 <html>
   <head>
     <title>INPUT FORM</title>
-  <script src="scripts/param.js"></script>
-  <script src="scripts/suggen.js"></script>
+    <script src="scripts/param.js"></script>
+    <script src="scripts/suggen.js"></script>
+    <link rel="stylesheet" href="static/jquery-ui.css" />
+    <script src="scripts/jquery-1.9.1.js"></script>
+    <script src="scripts/jquery-ui.js"></script>
+    <script>
+	$(function() {
+		$( "#tabs" ).tabs();
+	});
+	</script>
   </head>
   <body>
     <p>Enter the details of the respective given fields.</p>
+    <p id='check_box_details'></p>
     <form name="input_form" method="POST" action="suggestion.php" onsubmit="return validate()">
       <table id="func_input">
       <tr><th>Name of Function</th>
@@ -19,9 +28,15 @@
       <td><input type="number" id="iargs2" name="java_input_args" onKeyUp="return java_validate_and_process()"></td>
       </tr>
       </table>
-      <p id="c_args"></p>
-      <br/>
-      <p id="java_args"></p>
+      <div id="tabs">
+        <ul>
+        <li><a href="#c_args">C Inputs</a></li>
+        <li><a href="#java_args">Java Inputs</a></li>
+        </ul>
+      	<p id="c_args"></p>
+      	<br/>
+      	<p id="java_args"></p>
+      </div>
     </form>
   </body>
 </html>
